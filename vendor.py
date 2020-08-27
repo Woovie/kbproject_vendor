@@ -11,4 +11,4 @@ class ShopifyVendor(Vendor):
     def set_data(self, config: configparser.ConfigParser, url: str):
         self.config = config
         self.url = url
-        self.scrape_url = f"{self.url}{self.config['shopify']['data_location']}"
+        self.scrape_url = f"https://{self.url}{self.config['shopify']['data_location']}"
