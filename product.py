@@ -1,4 +1,4 @@
-from kbproject_vendor import baseclass, option, image
+from vendor import baseclass, option, image
 import configparser
 
 class Product(baseclass.BaseClass):# product = Product(config).create_product("Shopify")

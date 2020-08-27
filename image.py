@@ -1,4 +1,4 @@
-from kbproject_vendor import baseclass
+from vendor import baseclass
 
 class Image(baseclass.BaseClass):# Factory
     def __init__(self, url: str):

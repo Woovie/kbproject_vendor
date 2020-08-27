@@ -1,4 +1,4 @@
-from kbproject_vendor import baseclass
+from vendor import baseclass
 import uuid
 
 class Option(baseclass.BaseClass):

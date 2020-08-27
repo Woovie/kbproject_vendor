@@ -1,6 +1,6 @@
 import re, configparser
 
-from kbproject_vendor import baseclass, product
+from vendor import baseclass, product
 
 class Vendor(baseclass.BaseClass):
     def __init__(self):
