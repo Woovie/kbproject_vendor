@@ -6,7 +6,7 @@ class Option(baseclass.BaseClass):
         pass
 
     def create_option(self, option_type: str):#TODO: Add some type hinting for returning a... class? particular class type?
-        if (option_type == "Shopify"):
+        if (option_type == "shopify"):
             option = ShopifyOption()
         return option
 
@@ -39,7 +39,9 @@ class ShopifyOption(Option):
 
     def set_featured_image(self, namespace_uuid: uuid.UUID):
         if self.json['featured_image']:
-            self.image = uuid.uuid5(namespace_uuid, self.json['featured_image']['src'])
+            self.image = str(uuid.uuid5(namespace_uuid, self.json['featured_image']['src']))
+        else:
+            self.image = None
 
     def build_name(self):
         self.name = self.json["title"]
