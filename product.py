@@ -3,10 +3,12 @@ import configparser
 
 class Product(baseclass.BaseClass):# product = Product(config).create_product("Shopify")
     def __init__(self):
-        pass
+        self.options = []
+        self.images = []
+        self.json = {}
 
     def create_product(self, product_type: str):#TODO: Look at option file type hinting, also do it here.
-        if (product_type == "Shopify"):
+        if (product_type == "shopify"):
             product = ShopifyProduct()
         return product
 
@@ -40,22 +42,20 @@ class ShopifyProduct(Product):# Factory
         self.uri = f"{self.config['shopify']['product_prefix']}{self.json['handle']}"
 
     def build_images(self):
-        self.images = []
         for image in self.json["images"]:
             self.images.append(self.build_image(image))
 
-    def build_image(self, image: dict) -> image.Image:
-        image_object = image.Image(image["src"])
+    def build_image(self, image_dict: dict) -> image.Image:
+        image_object = image.Image(image_dict["src"])
         image_object.set_id(self.uuid, image_object.url)
         return image_object.build()
 
     def build_variants(self):
-        self.variants = []
         for variant in self.json["variants"]:
-            self.variants.append(self.build_variant(variant))
+            self.options.append(self.build_variant(variant))
 
     def build_variant(self, variant: dict) -> option.Option:
-        option_object = option.ShopifyOption()
+        option_object = option.Option().create_option("shopify")
         option_object.set_data(variant)
         option_object.set_featured_image(self.uuid)
         option_object.build()
